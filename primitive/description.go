@@ -1,10 +1,8 @@
 package primitive
 
-// TEST
-
 type Descriptible struct {
-	Name        string
-	Description string
+	Name        string `bun:"name" bson:"name" yaml:"name" json:"name"`
+	Description string `bun:"description" bson:"description" yaml:"description" json:"description"`
 }
 
 type TemplateDescriptible struct {

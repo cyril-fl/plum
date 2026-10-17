@@ -1,12 +1,10 @@
 package primitive
 
 import (
+	"reflect"
 	"testing"
-
-	"gopkg.in/yaml.v3"
 )
 
-// TODO Regerder pour le yaml rendre ça gernirique ou autre
 func TestDescribeAndMutators(t *testing.T) {
 	descriptible := Describe(TemplateDescriptible{
 		Name:        "name",
@@ -25,17 +23,42 @@ func TestDescribeAndMutators(t *testing.T) {
 	}
 }
 
-func TestDescriptibleUnmarshalsYAML(t *testing.T) {
-	var descriptible Descriptible
-
-	if err := yaml.Unmarshal([]byte("name: yaml name\ndescription: yaml description\n"), &descriptible); err != nil {
-		t.Fatalf("yaml.Unmarshal returned an error: %v", err)
+func TestDescriptibleHasSerializationTags(t *testing.T) {
+	for tagName, want := range map[string]map[string]string{
+		"bun": {
+			"Name":        "name",
+			"Description": "description",
+		},
+		"bson": {
+			"Name":        "name",
+			"Description": "description",
+		},
+		"yaml": {
+			"Name":        "name",
+			"Description": "description",
+		},
+		"json": {
+			"Name":        "name",
+			"Description": "description",
+		},
+	} {
+		t.Run(tagName, func(t *testing.T) {
+			assertDescriptibleTags(t, tagName, want)
+		})
 	}
+}
 
-	if descriptible.GetName() != "yaml name" {
-		t.Fatalf("name = %q, want %q", descriptible.GetName(), "yaml name")
-	}
-	if descriptible.GetDescription() != "yaml description" {
-		t.Fatalf("description = %q, want %q", descriptible.GetDescription(), "yaml description")
+func assertDescriptibleTags(t *testing.T, tagName string, want map[string]string) {
+	t.Helper()
+
+	typeOfDescriptible := reflect.TypeOf(Descriptible{})
+	for fieldName, expectedTag := range want {
+		field, ok := typeOfDescriptible.FieldByName(fieldName)
+		if !ok {
+			t.Fatalf("Descriptible is missing field %q", fieldName)
+		}
+		if got := field.Tag.Get(tagName); got != expectedTag {
+			t.Errorf("Descriptible.%s %s tag = %q, want %q", fieldName, tagName, got, expectedTag)
+		}
 	}
 }

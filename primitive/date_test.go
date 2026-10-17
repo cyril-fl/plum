@@ -6,7 +6,6 @@ import (
 	"time"
 )
 
-// TODO Voir si c'est compatible ave d'autre chose
 func TestDatedInitializesTimestamps(t *testing.T) {
 	datable := Dated()
 

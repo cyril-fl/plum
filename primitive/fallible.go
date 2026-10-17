@@ -3,7 +3,7 @@ package primitive
 import "errors"
 
 type FallibleInterface interface {
-	// ClearErr()
+	ClearErr()
 	GetErr() error
 	SetErr(err error)
 	HasErr() bool
