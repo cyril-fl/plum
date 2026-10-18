@@ -4,9 +4,9 @@ import "time"
 
 // LOW Je ne suis pas certain quel eBSONC soit necessaire
 type Datable struct {
-	CreatedAt time.Time `bson:"createdAt" json:"createdAt"`
-	UpdatedAt time.Time `bson:"updatedAt" json:"updatedAt"`
-	immutable bool
+	CreatedAt time.Time `bun:"created_at,notnull,default:current_timestamp" bson:"createdAt" yaml:"createdAt" json:"createdAt"`
+	UpdatedAt time.Time `bun:"updated_at,notnull,default:current_timestamp" bson:"updatedAt" yaml:"updatedAt" json:"updatedAt"`
+	immutable bool      `bun:"-" bson:"-" yaml:"-" json:"-"`
 }
 
 type TemplateDatable struct {
