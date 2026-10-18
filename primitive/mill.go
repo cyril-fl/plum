@@ -1,5 +1,6 @@
 package primitive
 
+// Mill provides error collection for a processing component.
 type Mill struct {
 	Fallible
 }

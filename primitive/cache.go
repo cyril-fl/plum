@@ -1,3 +1,4 @@
+// Package primitive provides reusable data and processing primitives.
 package primitive
 
 import (

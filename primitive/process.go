@@ -2,29 +2,30 @@ package primitive
 
 import interfass "github.com/cyril-fl/plum/interface"
 
-// Interface
-
+// Processable describes a runnable value that can report errors.
 type Processable interface {
 	FallibleInterface
 	interfass.Runnable
 }
 
+// ProcessableResult describes a processable value that exposes a result.
 type ProcessableResult[T any] interface {
 	Processable
 
 	GetResult() T
 }
 
+// Process stores errors produced by a process.
 type Process struct {
 	Fallible
 }
 
-// Methods
+// NewErr returns an empty Process ready to collect errors.
 func NewErr() *Process {
 	return &Process{}
 }
 
-// Helpers
+// HandleProcess runs processes in order and returns the first error encountered.
 func HandleProcess(processes []Processable) error {
 	for _, p := range processes {
 		p.Run()
@@ -56,15 +57,12 @@ func Process() *p {
 
 func (i *p) Run() {}
 
-// Getters & Setters
 func (i *p) GetResult() {
 	logs.SilentWarning("error:not_implemented", map[string]any{
 		"Function": "GetResult",
 		"Subject":  "",
 	})
 }
-// Methods
-
 // Helpers
 
 */

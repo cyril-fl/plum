@@ -1,17 +1,18 @@
+// Package types defines shared values used across the application.
 package types
 
-// keys
+// Key identifies a keyboard key or command.
 type Key string
 
 const (
-	// Navigation keys
+	// Navigation keys.
 	KEY_ENTER     Key = "enter"
 	KEY_ESC       Key = "esc"
 	KEY_BACKSPACE Key = "backspace"
 	KEY_TAB       Key = "tab"
 	KEY_SHIFT_TAB Key = "shift+tab"
 
-	// Arrow keys
+	// Arrow keys.
 	KEY_UP      Key = "up"
 	KEY_DOWN    Key = "down"
 	KEY_LEFT    Key = "left"
@@ -19,17 +20,17 @@ const (
 	KEY_PG_UP   Key = "pgup"
 	KEY_PG_DOWN Key = "pgdown"
 
-	// Shortcut
+	// Shortcuts.
 	SHORT_CTRL_C    Key = "ctrl+c"
 	SHORT_CTRL_Q    Key = "ctrl+q"
 	SHORT_CTRL_N    Key = "ctrl+n"
 	SHORT_SHIFT_TAB Key = "shift+tab"
 
-	// Command keys
+	// Command keys.
 	CMD_SHIFT_ENTER Key = "shift+enter"
 	CMD_ALT_ENTER   Key = "alt+enter"
 	CMD_CTRL_S      Key = "ctrl+s"
 
-	// Other keys
+	// Other keys.
 	KEY_EMPTY Key = ""
 )
