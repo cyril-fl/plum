@@ -1,0 +1,38 @@
+# Misc
+.DS_Store
+.fleet
+.idea
+
+# OS
+Thumbs.db
+
+# Env & config locale
+.env
+.env.*
+!.env.example
+
+# Binaires compilés
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Fichiers de test
+*.test
+*.out
+__debug_bin*
+
+# Dépendances vendorisées (si tu n'utilises pas vendor/)
+vendor/
+
+# Go workspace files
+go.work
+go.work.sum
+
+# IDE / autres éditeurs
+.idea/
+.vscode/
+!.vscode/launch.json
+.cursor/ 
+*.swp
