@@ -43,7 +43,7 @@ Procedure
 
 6. Verify the Results
 
-* Consult the Makefile and project documentation to identify the recommended test command.
+* Consult the project documentation to identify the recommended test command.
 * Run the tests from the appropriate directory.
 * Verify that the new tests pass and distinguish test failures from potential defects in the production code.
 * Confirm that all completed files have had their // TEST markers removed.
