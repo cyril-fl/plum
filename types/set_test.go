@@ -3,7 +3,7 @@ package types
 import "testing"
 
 func TestSetAddHasRemoveAndSize(t *testing.T) {
-	s := New[string]()
+	s := NewSet[string]()
 
 	if s.Size() != 0 {
 		t.Fatalf("new set size = %d, want 0", s.Size())
@@ -33,7 +33,7 @@ func TestSetAddHasRemoveAndSize(t *testing.T) {
 }
 
 func TestSetToSlice(t *testing.T) {
-	s := New[string]()
+	s := NewSet[string]()
 	s.Add("one")
 	s.Add("two")
 

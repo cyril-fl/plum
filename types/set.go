@@ -33,7 +33,7 @@ func (s Set[T]) ToSlice() []T {
 	return slice
 }
 
-// New returns an empty set.
-func New[T comparable]() Set[T] {
+// NewSet returns an empty set.
+func NewSet[T comparable]() Set[T] {
 	return make(Set[T])
 }
