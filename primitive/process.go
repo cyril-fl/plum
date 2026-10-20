@@ -42,7 +42,7 @@ func HandleProcess(processes []Processable) error {
 NOTE Snippet - Process
 
 type p struct {
-	process.Process
+	primitive.Process
 	cache
 }
 
@@ -58,10 +58,7 @@ func Process() *p {
 func (i *p) Run() {}
 
 func (i *p) GetResult() {
-	logs.SilentWarning("error:not_implemented", map[string]any{
-		"Function": "GetResult",
-		"Subject":  "",
-	})
+
 }
 // Helpers
 
