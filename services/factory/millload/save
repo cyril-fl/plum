@@ -1,0 +1,26 @@
+// package yaml
+
+// import (
+// 	"os"
+
+// 	yamlv3 "gopkg.in/yaml.v3"
+// )
+
+// func (l *Loader_v1) SaveToFile[T any](value T) error {
+// 	data, err := yamlv3.Marshal(value)
+// 	if err != nil {
+// 		// Ici
+// 		return l.makeErr("marshal %s: %w", l.path, err)
+// 	}
+
+// 	if err := os.WriteFile(l.path, data, 0o644); err != nil {
+// 		// Ici
+// 		return l.makeErr("write %s: %w", l.path, err)
+// 	}
+
+// 	return nil
+// }
+
+// func (l *Loader_v1) SaveListToFile[T any](values []T) error {
+// 	return l.SaveToFile(values)
+// }
