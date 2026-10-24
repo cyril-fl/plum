@@ -13,12 +13,14 @@ const (
 	KEY_SHIFT_TAB Key = "shift+tab"
 
 	// Arrow keys.
-	KEY_UP      Key = "up"
-	KEY_DOWN    Key = "down"
-	KEY_LEFT    Key = "left"
-	KEY_RIGHT   Key = "right"
-	KEY_PG_UP   Key = "pgup"
-	KEY_PG_DOWN Key = "pgdown"
+	KEY_UP       Key = "up"
+	KEY_DOWN     Key = "down"
+	KEY_LEFT     Key = "left"
+	KEY_RIGHT    Key = "right"
+	KEY_PG_UP    Key = "pgup"
+	KEY_PG_DOWN  Key = "pgdown"
+	KEY_ALT_UP   Key = "alt+up"
+	KEY_ALT_DOWN Key = "alt+down"
 
 	// Shortcuts.
 	SHORT_CTRL_C    Key = "ctrl+c"
@@ -29,6 +31,7 @@ const (
 	// Command keys.
 	CMD_SHIFT_ENTER Key = "shift+enter"
 	CMD_ALT_ENTER   Key = "alt+enter"
+	CMD_CTRL_ENTER  Key = "ctrl+enter"
 	CMD_CTRL_S      Key = "ctrl+s"
 
 	// Other keys.
