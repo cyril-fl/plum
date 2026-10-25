@@ -20,6 +20,13 @@ func Makeflags(cmd *cobra.Command, flags []config.Cmdflags) []*pflag.FlagSet {
 				assertIntValue(f.Value),
 				f.Usage,
 			)
+		case "bool":
+			cmd.Flags().BoolP(
+				f.Name,
+				f.Shorthand,
+				assertBoolValue(f.Value),
+				f.Usage,
+			)
 		case "string":
 			cmd.Flags().StringP(
 				f.Name,
@@ -44,6 +51,14 @@ func assertIntValue(value string) int {
 	v, err := strconv.Atoi(value)
 	if err != nil {
 		return 0
+	}
+	return v
+}
+
+func assertBoolValue(value string) bool {
+	v, err := strconv.ParseBool(value)
+	if err != nil {
+		return false
 	}
 	return v
 }
