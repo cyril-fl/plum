@@ -12,3 +12,9 @@ func Json(data interface{}) {
 	json := transform.ParseJson(data)
 	fmt.Println(string(json))
 }
+
+// Yaml prints data as YAML.
+func Yaml(data interface{}) {
+	yaml := transform.ParseYaml(data)
+	fmt.Println(string(yaml))
+}

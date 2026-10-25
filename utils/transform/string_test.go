@@ -67,3 +67,15 @@ func TestStringBool(t *testing.T) {
 		}
 	}
 }
+
+func TestParseYaml(t *testing.T) {
+	if got := ParseYaml(map[string]string{"name": "plum"}); got != "name: plum" {
+		t.Errorf("ParseYaml() = %q, want YAML without trailing newline", got)
+	}
+}
+
+func TestParseYamlReportsMarshalErrors(t *testing.T) {
+	if got := ParseYaml(func() {}); got != "cannot marshal type: func()" {
+		t.Errorf("ParseYaml() = %q, want marshal error", got)
+	}
+}

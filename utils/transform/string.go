@@ -6,6 +6,8 @@ import (
 	"fmt"
 	"os"
 	"strings"
+
+	"gopkg.in/yaml.v3"
 )
 
 // Capitalize uppercases the first byte of s and leaves the rest unchanged.
@@ -48,6 +50,26 @@ func ParseJson(data interface{}) string {
 	}
 
 	return string(json)
+}
+
+// ParseYaml returns data as YAML or the marshal error message.
+func ParseYaml(data interface{}) (out string) {
+	// yaml.v3 panics on unsupported types where encoding/json returns an error.
+	defer func() {
+		if r := recover(); r != nil {
+			fmt.Fprintln(os.Stderr)
+			out = fmt.Sprint(r)
+		}
+	}()
+
+	yaml, err := yaml.Marshal(data)
+	if err != nil {
+		fmt.Fprintln(os.Stderr)
+		return err.Error()
+	}
+
+	// Trimmed like ParseJson output, which has no trailing newline.
+	return strings.TrimSuffix(string(yaml), "\n")
 }
 
 // ParseAsString returns an empty string for nil, otherwise the formatted value.

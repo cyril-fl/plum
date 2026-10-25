@@ -31,3 +31,29 @@ func TestJsonPrintsIndentedJSON(t *testing.T) {
 		t.Fatalf("Json() output = %q, want %q", got, want)
 	}
 }
+
+func TestYamlPrintsYAML(t *testing.T) {
+	oldStdout := os.Stdout
+	reader, writer, err := os.Pipe()
+	if err != nil {
+		t.Fatal(err)
+	}
+	os.Stdout = writer
+	t.Cleanup(func() {
+		os.Stdout = oldStdout
+	})
+
+	Yaml(map[string]string{"name": "plum"})
+	if err := writer.Close(); err != nil {
+		t.Fatal(err)
+	}
+
+	got, err := io.ReadAll(reader)
+	if err != nil {
+		t.Fatal(err)
+	}
+	want := "name: plum\n"
+	if string(got) != want {
+		t.Fatalf("Yaml() output = %q, want %q", got, want)
+	}
+}
