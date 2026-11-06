@@ -31,6 +31,8 @@ const (
 	SHORT_CTRL_O    Key = "ctrl+o"
 	SHORT_CTRL_X    Key = "ctrl+x"
 	SHORT_CTRL_V    Key = "ctrl+v"
+	SHORT_CTRL_Y    Key = "ctrl+y"
+	SHORT_CTRL_Z    Key = "ctrl+z"
 	SHORT_SHIFT_TAB Key = "shift+tab"
 
 	// Command keys.
@@ -63,6 +65,8 @@ var symbols = map[Key]string{
 	SHORT_CTRL_O:    "^O",
 	SHORT_CTRL_X:    "^X",
 	SHORT_CTRL_V:    "^V",
+	SHORT_CTRL_Y:    "^Y",
+	SHORT_CTRL_Z:    "^Z",
 	CMD_SHIFT_ENTER: "⇧↳",
 	CMD_ALT_ENTER:   "⌥↳",
 	CMD_CTRL_ENTER:  "^↳",
