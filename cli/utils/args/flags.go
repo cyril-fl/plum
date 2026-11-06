@@ -53,6 +53,19 @@ func Makeflags(cmd *cobra.Command, flags []config.Cmdflags) []*pflag.FlagSet {
 	return result
 }
 
+// GetBoolFlags reads each bool flag of cmd into its target.
+func GetBoolFlags(cmd *cobra.Command, targets map[string]*bool) error {
+	for name, target := range targets {
+		value, err := cmd.Flags().GetBool(name)
+		if err != nil {
+			return err
+		}
+		*target = value
+	}
+
+	return nil
+}
+
 // Helpers
 func assertIntValue(value string) int {
 	v, err := strconv.Atoi(value)

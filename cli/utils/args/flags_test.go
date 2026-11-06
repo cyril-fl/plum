@@ -26,6 +26,26 @@ func TestMakeflagsBool(t *testing.T) {
 	}
 }
 
+func TestGetBoolFlags(t *testing.T) {
+	cmd := &cobra.Command{}
+	Makeflags(cmd, []config.Cmdflags{{Name: "json", Type: "bool"}, {Name: "pretty", Type: "bool"}})
+	if err := cmd.ParseFlags([]string{"--pretty"}); err != nil {
+		t.Fatalf("ParseFlags() error = %v", err)
+	}
+
+	var asJSON, asPretty bool
+	if err := GetBoolFlags(cmd, map[string]*bool{"json": &asJSON, "pretty": &asPretty}); err != nil {
+		t.Fatalf("GetBoolFlags() error = %v", err)
+	}
+	if asJSON || !asPretty {
+		t.Fatalf("json = %v, pretty = %v; want false, true", asJSON, asPretty)
+	}
+
+	if err := GetBoolFlags(cmd, map[string]*bool{"missing": &asJSON}); err == nil {
+		t.Fatal("GetBoolFlags() error = nil, want undefined flag error")
+	}
+}
+
 func TestMakeflagsStringSlice(t *testing.T) {
 	cmd := &cobra.Command{}
 	Makeflags(cmd, []config.Cmdflags{{Name: "tag", Type: "stringSlice"}})
