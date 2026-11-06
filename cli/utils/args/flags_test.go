@@ -25,3 +25,16 @@ func TestMakeflagsBool(t *testing.T) {
 		t.Fatalf("GetBool(verbose) = %v, %v; want default true, nil", got, err)
 	}
 }
+
+func TestMakeflagsStringSlice(t *testing.T) {
+	cmd := &cobra.Command{}
+	Makeflags(cmd, []config.Cmdflags{{Name: "tag", Type: "stringSlice"}})
+	if err := cmd.ParseFlags([]string{"--tag", "a,b", "--tag", "c"}); err != nil {
+		t.Fatalf("ParseFlags() error = %v", err)
+	}
+
+	got, err := cmd.Flags().GetStringSlice("tag")
+	if err != nil || len(got) != 3 || got[0] != "a" || got[1] != "b" || got[2] != "c" {
+		t.Fatalf("GetStringSlice(tag) = %v, %v; want [a b c], nil", got, err)
+	}
+}

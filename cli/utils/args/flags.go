@@ -27,6 +27,13 @@ func Makeflags(cmd *cobra.Command, flags []config.Cmdflags) []*pflag.FlagSet {
 				assertBoolValue(f.Value),
 				f.Usage,
 			)
+		case "stringSlice":
+			cmd.Flags().StringSliceP(
+				f.Name,
+				f.Shorthand,
+				nil,
+				f.Usage,
+			)
 		case "string":
 			cmd.Flags().StringP(
 				f.Name,
