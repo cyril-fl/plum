@@ -2,6 +2,7 @@
 package transform
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"os"
@@ -52,7 +53,7 @@ func ParseJson(data interface{}) string {
 	return string(json)
 }
 
-// ParseYaml returns data as YAML or the marshal error message.
+// ParseYaml returns data as YAML indented with two spaces or the marshal error message.
 func ParseYaml(data interface{}) (out string) {
 	// yaml.v3 panics on unsupported types where encoding/json returns an error.
 	defer func() {
@@ -62,14 +63,18 @@ func ParseYaml(data interface{}) (out string) {
 		}
 	}()
 
-	yaml, err := yaml.Marshal(data)
-	if err != nil {
+	// Two-space indent, like ParseJson.
+	var buffer bytes.Buffer
+	encoder := yaml.NewEncoder(&buffer)
+	encoder.SetIndent(2)
+	if err := encoder.Encode(data); err != nil {
 		fmt.Fprintln(os.Stderr)
 		return err.Error()
 	}
+	encoder.Close()
 
 	// Trimmed like ParseJson output, which has no trailing newline.
-	return strings.TrimSuffix(string(yaml), "\n")
+	return strings.TrimSuffix(buffer.String(), "\n")
 }
 
 // ParseAsString returns an empty string for nil, otherwise the formatted value.

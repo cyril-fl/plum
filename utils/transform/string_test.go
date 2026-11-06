@@ -74,6 +74,13 @@ func TestParseYaml(t *testing.T) {
 	}
 }
 
+func TestParseYamlIndentsWithTwoSpaces(t *testing.T) {
+	data := map[string]any{"plum": map[string]any{"tags": []string{"a"}}}
+	if got := ParseYaml(data); got != "plum:\n  tags:\n    - a" {
+		t.Errorf("ParseYaml() = %q, want two-space indent", got)
+	}
+}
+
 func TestParseYamlReportsMarshalErrors(t *testing.T) {
 	if got := ParseYaml(func() {}); got != "cannot marshal type: func()" {
 		t.Errorf("ParseYaml() = %q, want marshal error", got)
