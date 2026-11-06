@@ -26,6 +26,11 @@ const (
 	SHORT_CTRL_C    Key = "ctrl+c"
 	SHORT_CTRL_Q    Key = "ctrl+q"
 	SHORT_CTRL_N    Key = "ctrl+n"
+	SHORT_CTRL_E    Key = "ctrl+e"
+	SHORT_CTRL_D    Key = "ctrl+d"
+	SHORT_CTRL_O    Key = "ctrl+o"
+	SHORT_CTRL_X    Key = "ctrl+x"
+	SHORT_CTRL_V    Key = "ctrl+v"
 	SHORT_SHIFT_TAB Key = "shift+tab"
 
 	// Command keys.
@@ -37,3 +42,37 @@ const (
 	// Other keys.
 	KEY_EMPTY Key = ""
 )
+
+// symbols are the compact glyphs shown in shortcut hints.
+var symbols = map[Key]string{
+	KEY_ENTER:       "↳",
+	KEY_ESC:         "⎋",
+	KEY_TAB:         "⇥",
+	KEY_SHIFT_TAB:   "⇧⇥",
+	KEY_UP:          "↑",
+	KEY_DOWN:        "↓",
+	KEY_LEFT:        "←",
+	KEY_RIGHT:       "→",
+	KEY_ALT_UP:      "⌥↑",
+	KEY_ALT_DOWN:    "⌥↓",
+	SHORT_CTRL_C:    "^C",
+	SHORT_CTRL_Q:    "^Q",
+	SHORT_CTRL_N:    "^N",
+	SHORT_CTRL_E:    "^E",
+	SHORT_CTRL_D:    "^D",
+	SHORT_CTRL_O:    "^O",
+	SHORT_CTRL_X:    "^X",
+	SHORT_CTRL_V:    "^V",
+	CMD_SHIFT_ENTER: "⇧↳",
+	CMD_ALT_ENTER:   "⌥↳",
+	CMD_CTRL_ENTER:  "^↳",
+	CMD_CTRL_S:      "^S",
+}
+
+// Symbol returns the glyph shown in shortcut hints, or the key itself when it has none.
+func (k Key) Symbol() string {
+	if symbol, ok := symbols[k]; ok {
+		return symbol
+	}
+	return string(k)
+}
